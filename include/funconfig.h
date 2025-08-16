@@ -1,9 +1,16 @@
 #ifndef _FUNCONFIG_H
 #define _FUNCONFIG_H
 
-#define CH32V003           1
-//#define FUNCONF_SYSTEM_CORE_CLOCK 48000000  // Computed Clock in Hz (Default only for 003, other chips have other defaults)
-#define FUNCONF_SYSTICK_USE_HCLK 1      // Should systick be at 48 MHz (1) or 6MHz (0) on an '003.  Must be set to 1 if you are using micros()
+// System core clock will be overridden by PlatformIO build flags for external crystal configs
+#ifndef FUNCONF_SYSTEM_CORE_CLOCK
+#define FUNCONF_SYSTEM_CORE_CLOCK 48000000  // Default: 48MHz (24MHz HSE * 2 PLL or 24MHz HSI * 2 PLL)
+#endif
+
+// External crystal configuration - when using external crystal these should be defined
+// These are commented out here because they'll be set by PlatformIO build flags
+// #define FUNCONF_USE_PLL 1               // Use built-in 2x PLL 
+// #define FUNCONF_USE_HSI 0               // Use HSI Internal Oscillator (disabled for external crystal)
+// #define FUNCONF_USE_HSE 1               // Use External Oscillator
 
 
 // #define FUNCONF_USE_PLL 1               // Use built-in 2x PLL 
